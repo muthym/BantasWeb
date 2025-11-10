@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bantas Fun Coder - Tailwind</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Roboto Mono', monospace;
+        }
+        .font-nunito {
+            font-family: 'Nunito', sans-serif;
+        }
+        .text-shadow-cyan {
+            text-shadow: 0 0 10px rgba(0,255,255,0.5);
+        }
+        .cursor {
+            animation: blink-caret .75s step-end infinite;
+        }
+        @keyframes blink-caret {
+            from, to { border-right-color: transparent }
+            50% { border-right-color: #00ffff; }
+        }
+        details > summary {
+            list-style: none;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        details summary::before {
+            content: '► ';
+            color: #00ff00; /* Green arrow */
+            margin-right: 10px;
+        }
+        details[open] summary::before {
+            content: '▼ ';
+        }
+        .unsupported-cmd {
+            color: #ff0000; /* Red for unsupported */
+            list-style-type: '❌ ';
+        }
+        .guide-content ul {
+            padding-left: 25px;
+            list-style-type: '⚡ '; /* Fun list style */
+        }
+    </style>
+</head>
+<body class="bg-black text-green-400 flex flex-col items-center min-h-screen p-4">
+    <h1 class="text-4xl md:text-5xl text-cyan-400 font-bold mb-6 text-center drop-shadow-[0_0_10px_#00ffff]">
+      Bantas Fun Coder <span class="animate-pulse">_</span>
+    </h1>
+
+    <div class="guide-container w-full max-w-7xl bg-gray-950 border border-green-700 rounded-lg shadow-[0_0_15px_#00ff00] mb-6">
+        <details>
+            <summary class="cursor-pointer p-4 text-lg font-bold text-cyan-400 select-none">BANTAS Command Helper</summary>
+            
+    <div class="p-4 border-t border-green-800 text-green-300 font-nunito">
+        <p>Welcome to BANTAS! These are the special symbols you can use to tell the computer what to do. Each symbol is a powerful command!</p>
+        
+        <h4 class="text-cyan-400 mt-4 mb-1 border-b border-dotted border-green-800">A Quick Note on Magic Boxes (Stacks)</h4>
+        <p>Remember, Bantas uses <strong>magic boxes</strong> called stacks to save information.</p>
+        <ul>
+            <li><strong>Look Inside a Box (`@`):</strong> When you see <code>@&lt;index&gt;</code> (like <code>@1</code>), it means: <strong>"Look inside box #1 and use whatever value is stored there."</strong></li>
+            <li>**The Loop Counter (`@,0`):** Inside a loop (the <code>[</code> and <code>]</code> commands), <code>@,0</code> refers to the number the loop is currently counting.</li>
+        </ul>
+
+        <h4 class="text-cyan-400 mt-4 mb-1 border-b border-dotted border-green-800">Using Quotes (For Words)</h4>
+        <p>Always put quotes (<code>"</code>) around a word if you want the computer to treat it as a word, like <code>&lt;,"Hi"</code>.</p>
+        
+        <hr class="border-t border-dotted border-green-800 my-4">
+
+        <h4 class="text-cyan-400 mt-4 mb-1">Core Commands (Talking and Saving)</h4>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-2.5">
+            <div class="bg-gray-950 rounded-lg border border-green-800 p-4 shadow-sm shadow-green-500/10">
+                <div class="font-bold text-cyan-400 mb-1 text-lg">@ - Set Active Box</div>
+                <div class="font-mono bg-black text-green-400 p-1 rounded-sm mb-2.5 border border-dashed border-green-800">@,&lt;position&gt;</div>
+                <p><strong>What it does:</strong> Tells the computer which <strong>magic box (stack)</strong> you want to use next. All other commands will work on this box.</p>
+                <p><strong>Example:</strong> <code>@,5</code> sets the active box to number 5.</p>
+            </div>
+            
+            <div class="bg-gray-950 rounded-lg border border-green-800 p-4 shadow-sm shadow-green-500/10">
+                <div class="font-bold text-cyan-400 mb-1 text-lg">&lt; - Put Value in Box</div>
+                <div class="font-mono bg-black text-green-400 p-1 rounded-sm mb-2.5 border border-dashed border-green-800">&lt;,&lt;value&gt;</div>
+                <p><strong>What it does:</strong> <strong>Puts</strong> a number or a word inside the magic box you're pointing at.</p>
+                <p><strong>Example:</strong> <code>&lt;,100</code> stores the number 100. <code>&lt;,"hello"</code> stores the word "hello".</p>
+            </div>
+            
+            <div class="bg-gray-950 rounded-lg border border-green-800 p-4 shadow-sm shadow-green-500/10">
+                <div class="font-bold text-cyan-400 mb-1 text-lg">&gt; - Ask Me for Input</div>
+                <div class="font-mono bg-black text-green-400 p-1 rounded-sm mb-2.5 border border-dashed border-green-800">&gt;,&lt;prompt_message&gt;</div>
+                <p><strong>What it does:</strong> **Asks** the user to type something and puts their answer in the active box.</p>
+                <p><strong>Example:</strong> <code>&gt;,"What is your name?"</code></p>
+            </div>
+            
+            <div class="bg-gray-950 rounded-lg border border-green-800 p-4 shadow-sm shadow-green-500/10">
+                <div class="font-bold text-cyan-400 mb-1 text-lg">? - Say/Print (New Line)</div>
+                <div class="font-mono bg-black text-green-400 p-1 rounded-sm mb-2.5 border border-dashed border-green-800">?,&lt;value&gt;</div>
+                <p><strong>What it does:</strong> **Says** the word or number to the screen, then moves to a new line for the next message.</p>
+                <p><strong>Example:</strong> <code>?,@1</code> prints the value from box 1.</p>
+            </div>
+
+            <div class="bg-gray-950 rounded-lg border border-green-800 p-4 shadow-sm shadow-green-500/10">
+                <div class="font-bold text-cyan-400 mb-1 text-lg">?? - Say/Print (Same Line)</div>
+                <div class="font-mono bg-black text-green-400 p-1 rounded-sm mb-2.5 border border-dashed border-green-800">??,&lt;value&gt;</div>
+                <p><strong>What it does:</strong> **Says** the word or number without moving to a new line, so the next thing prints right next to it.</p>
+                <p><strong>Example:</strong> <code>??,"Hi "</code> followed by <code>??,"There"</code> prints "Hi There".</p>
+            </div>
+        </div>
+        
+        <h4 class="text-cyan-400 mt-4 mb-1">Math Commands (Doing Calculations)</h4>
+        <p><em>These commands change the number inside the <strong>active box</strong> using the number you provide.</em></p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-2.5">
+            <div class="bg-gray-950 rounded-lg border border-green-800 p-4 shadow-sm shadow-green-500/10">
+                <div class="font-bold text-cyan-400 mb-1 text-lg">+ - Add</div>
+                <div class="font-mono bg-black text-green-400 p-1 rounded-sm mb-2.5 border border-dashed border-green-800">+,&lt;value&gt;</div>
+                <p><strong>What it does:</strong> **Adds** the argument's number to the number already in the active box.</p>
+                <p><strong>Example:</strong> <code>+,10</code> adds 10 to the active box.</p>
+            </div>
+            
+            <div class="bg-gray-950 rounded-lg border border-green-800 p-4 shadow-sm shadow-green-500/10">
+                <div class="font-bold text-cyan-400 mb-1 text-lg">- - Subtract</div>
+                <div class="font-mono bg-black text-green-400 p-1 rounded-sm mb-2.5 border border-dashed border-green-800">-,&lt;value&gt;</div>
+                <p><strong>What it does:</strong> **Subtracts** the argument's number from the number already in the active box.</p>
+                <p><strong>Example:</strong> <code>-,5</code> subtracts 5 from the active box.</p>
+            </div>
+            
+            <div class="bg-gray-950 rounded-lg border border-green-800 p-4 shadow-sm shadow-green-500/10">
+                <div class="font-bold text-cyan-400 mb-1 text-lg">* - Multiply</div>
+                <div class="font-mono bg-black text-green-400 p-1 rounded-sm mb-2.5 border border-dashed border-green-800">*,&lt;value&gt;</div>
+                <p><strong>What it does:</strong> **Multiplies** the active box's number by the argument's number.</p>
+                <p><strong>Example:</strong> <code>*,2</code> doubles the value in the active box.</p>
+            </div>
+            
+            <div class="bg-gray-950 rounded-lg border border-green-800 p-4 shadow-sm shadow-green-500/10">
+                <div class="font-bold text-cyan-400 mb-1 text-lg">/ - Divide</div>
+                <div class="font-mono bg-black text-green-400 p-1 rounded-sm mb-2.5 border border-dashed border-green-800">/,&lt;value&gt;</div>
+                <p><strong>What it does:</strong> **Divides** the active box's number by the argument's number (gives a decimal answer).</p>
+                <p><strong>Example:</strong> <code>/,2</code> halves the value in the active box.</p>
+            </div>
+
+            <div class="bg-gray-950 rounded-lg border border-green-800 p-4 shadow-sm shadow-green-500/10">
+                <div class="font-bold text-cyan-400 mb-1 text-lg">// - Chunky Divide (Integer)</div>
+                <div class="font-mono bg-black text-green-400 p-1 rounded-sm mb-2.5 border border-dashed border-green-800">//,&lt;value&gt;</div>
+                <p><strong>What it does:</strong> **Divides**, but only keeps the <strong>whole number</strong> answer. (e.g., 10 // 3 equals 3).</p>
+            </div>
+
+            <div class="bg-gray-950 rounded-lg border border-green-800 p-4 shadow-sm shadow-green-500/10">
+                <div class="font-bold text-cyan-400 mb-1 text-lg">/// - Leftover Divide (Modulo)</div>
+                <div class="font-mono bg-black text-green-400 p-1 rounded-sm mb-2.5 border border-dashed border-green-800">///,&lt;value&gt;</div>
+                <p><strong>What it does:</strong> **Divides**, but only keeps the <strong>remainder</strong> (the leftover part). (e.g., 10 /// 3 equals 1).</p>
+            </div>
+            
+            <div class="bg-gray-950 rounded-lg border border-green-800 p-4 shadow-sm shadow-green-500/10">
+                <div class="font-bold text-cyan-400 mb-1 text-lg">^ - Power Up! (Exponent)</div>
+                <div class="font-mono bg-black text-green-400 p-1 rounded-sm mb-2.5 border border-dashed border-green-800">^,&lt;exponent&gt;</div>
+                <p><strong>What it does:</strong> **Multiplies** the number in the active box by itself a certain number of times.</p>
+                <p><strong>Example:</strong> <code>^,3</code> cubes the value (value * value * value).</p>
+            </div>
+            
+            <div class="bg-gray-950 rounded-lg border border-green-800 p-4 shadow-sm shadow-green-500/10">
+                <div class="font-bold text-cyan-400 mb-1 text-lg">$ - Random Number</div>
+                <div class="font-mono bg-black text-green-400 p-1 rounded-sm mb-2.5 border border-dashed border-green-800">$,&lt;max_value&gt;</div>
+                <p><strong>What it does:</strong> Generates a <strong>random whole number</strong> (like rolling a die) between 1 and the number you give, and stores it in the active box.</p>
+                <p><strong>Example:</strong> <code>$,100</code> stores a random number between 1 and 100.</p>
+            </div>
+        </div>
+        
+        <h4 class="text-cyan-400 mt-4 mb-1">Word Commands (String Magic)</h4>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-2.5">
+            <div class="bg-gray-950 rounded-lg border border-green-800 p-4 shadow-sm shadow-green-500/10">
+                <div class="font-bold text-cyan-400 mb-1 text-lg">& - Join Words (Concatenate)</div>
+                <div class="font-mono bg-black text-green-400 p-1 rounded-sm mb-2.5 border border-dashed border-green-800">&,&lt;value&gt;</div>
+                <p><strong>What it does:</strong> **Joins** the word you provide to the end of the word already in the active box.</p>
+                <p><strong>Example:</strong> If box 1 has "Hello", <code>&, World</code> changes it to "Hello World".</p>
+            </div>
+
+            <div class="bg-gray-950 rounded-lg border border-green-800 p-4 shadow-sm shadow-green-500/10">
+                <div class="font-bold text-cyan-400 mb-1 text-lg">&gt;&lt; - Tidy Up (Trim)</div>
+                <div class="font-mono bg-black text-green-400 p-1 rounded-sm mb-2.5 border border-dashed border-green-800">&gt;&lt;,&lt;string_value&gt;</div>
+                <p><strong>What it does:</strong> **Cleans up** a word by removing any extra spaces at the very beginning or very end.</p>
+                <p><strong>Example:</strong> If box 1 contains "  hello  ", <code>&gt;&lt;,@1</code> will change it to "hello".</p>
+            </div>
+            
+            <div class="bg-gray-950 rounded-lg border border-green-800 p-4 shadow-sm shadow-green-500/10">
+                <div class="font-bold text-cyan-400 mb-1 text-lg">_ - Measure Word (Length)</div>
+                <div class="font-mono bg-black text-green-400 p-1 rounded-sm mb-2.5 border border-dashed border-green-800">_,&lt;string_value&gt;</div>
+                <p><strong>What it does:</strong> **Counts** how many letters are in a word and puts that number into the active box.</p>
+                <p><strong>Example:</strong> <code>_,Hello</code> stores the number 5.</p>
+            </div>
+            
+            <div class="bg-gray-950 rounded-lg border border-green-800 p-4 shadow-sm shadow-green-500/10">
+                <div class="font-bold text-cyan-400 mb-1 text-lg">( - Take from Left</div>
+                <div class="font-mono bg-black text-green-400 p-1 rounded-sm mb-2.5 border border-dashed border-green-800">(,&lt;length&gt;</div>
+                <p><strong>What it does:</strong> **Keeps** only the first few letters from the left of the word in the active box.</p>
+                <p><strong>Example:</strong> If the active box has "abcdef", <code>(,3</code> will change it to "abc".</p>
+            </div>
+            
+            <div class="bg-gray-950 rounded-lg border border-green-800 p-4 shadow-sm shadow-green-500/10">
+                <div class="font-bold text-cyan-400 mb-1 text-lg">) - Take from Right</div>
+                <div class="font-mono bg-black text-green-400 p-1 rounded-sm mb-2.5 border border-dashed border-green-800">),&lt;length&gt;</div>
+                <p><strong>What it does:</strong> **Keeps** only the last few letters from the right of the word in the active box.</p>
+                <p><strong>Example:</strong> If the active box has "abcdef", <code>),2</code> will change it to "ef".</p>
+            </div>
+        </div>
+        
+        <h4 class="text-cyan-400 mt-4 mb-1">Control Flow (Making Choices and Repeating)</h4>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-2.5">
+            <div class="bg-gray-950 rounded-lg border border-green-800 p-4 shadow-sm shadow-green-500/10">
+                <div class="font-bold text-cyan-400 mb-1 text-lg">[ and ] - Loop/Repeat</div>
+                <div class="font-mono bg-black text-green-400 p-1 rounded-sm mb-2.5 border border-dashed border-green-800">[,&lt;start_value&gt; ... ],&lt;end_value&gt;</div>
+                <p><strong>What it does:</strong> Makes the computer <strong>repeat</strong> a set of commands multiple times, like counting from one number to another.</p>
+                <p><strong>Example:</strong></p>
+                <div class="bg-black border border-green-400 text-green-400 rounded p-2.5 my-2.5 font-mono text-sm">
+                    <code>' This loop counts from 1 to 5<br>
+[,1<br>
+  &nbsp;&nbsp;?,@<br>
+],5</code>
+                </div>
+            </div>
+            
+            <div class="bg-gray-950 rounded-lg border border-green-800 p-4 shadow-sm shadow-green-500/10">
+                <div class="font-bold text-cyan-400 mb-1 text-lg">#, !, ; - If/Else/End Check</div>
+                <div class="font-mono bg-black text-green-400 p-1 rounded-sm mb-2.5 border border-dashed border-green-800">#,&lt;condition&gt; ... ! ... ;</div>
+                <p><strong>What it does:</strong> Makes the computer <strong>check</strong> if something is true and choose which commands to run.</p>
+                <ul>
+                    <li><code>#</code> (If): Do this block of code <strong>IF</strong> the condition is true.</li>
+                    <li><code>!</code> (Else): Do this block of code <strong>OTHERWISE</strong> (if the condition was false).</li>
+                    <li><code>;</code> (End If): Marks the <strong>END</strong> of the choice.</li>
+                </ul>
+                <p><strong>Example:</strong></p>
+                <div class="bg-black border border-green-400 text-green-400 rounded p-2.5 my-2.5 font-mono text-sm">
+                    <code>@,1<br>
+&lt;,10<br>
+#,=10<br>
+  &nbsp;?,Value is 10<br>
+!<br>
+  &nbsp;?,Value is not 10<br>
+;</code>
+                </div>
+            </div>
+        </div>
+
+        <h4 class="text-cyan-400 mt-4 mb-1">Trigonometry Commands (Advanced Math)</h4>
+        <p><em>Note: These commands use degrees (like in a circle) to figure out an answer and store it in the active box.</em></p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-2.5">
+            <div class="bg-gray-950 rounded-lg border border-green-800 p-4 shadow-sm shadow-green-500/10">
+                <div class="font-bold text-cyan-400 mb-1 text-lg">{ - Sine</div>
+                <div class="font-mono bg-black text-green-400 p-1 rounded-sm mb-2.5 border border-dashed border-green-800">{,&lt;degrees&gt;</div>
+                <p><strong>What it does:</strong> Calculates the <strong>Sine</strong> (a special math value) from the degrees you give it and stores the answer in the active box.</p>
+                <p><strong>Example:</strong> <code>{,90</code> stores <code>1</code> in the active box.</p>
+            </div>
+            
+            <div class="bg-gray-950 rounded-lg border border-green-800 p-4 shadow-sm shadow-green-500/10">
+                <div class="font-bold text-cyan-400 mb-1 text-lg">} - Cosine</div>
+                <div class="font-mono bg-black text-green-400 p-1 rounded-sm mb-2.5 border border-dashed border-green-800">},&lt;degrees&gt;</div>
+                <p><strong>What it does:</strong> Calculates the <strong>Cosine</strong> (another special math value) from the degrees you give it and stores the answer in the active box.</p>
+                <p><strong>Example:</strong> <code>},0</code> stores <code>1</code> in the active box.</p>
+            </div>
+            
+            <div class="bg-gray-950 rounded-lg border border-green-800 p-4 shadow-sm shadow-green-500/10">
+                <div class="font-bold text-cyan-400 mb-1 text-lg">\ - Tangent</div>
+                <div class="font-mono bg-black text-green-400 p-1 rounded-sm mb-2.5 border border-dashed border-green-800">\,&lt;degrees&gt;</div>
+                <p><strong>What it does:</strong> Calculates the <strong>Tangent</strong> (a third special math value) from the degrees you give it and stores the answer in the active box.</p>
+                <p><strong>Example:</strong> <code>\,45</code> stores <code>1</code> in the active box.</p>
+            </div>
+        </div>
+
+<h4 class="text-cyan-400 mt-4 mb-1">Type and Format Commands (Changing Value Types)</h4>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-2.5">
+    <div class="bg-gray-950 rounded-lg border border-green-800 p-4 shadow-sm shadow-green-500/10">
+        <div class="font-bold text-cyan-400 mb-1 text-lg">. - Letter to Secret Number</div>
+        <div class="font-mono bg-black text-green-400 p-1 rounded-sm mb-2.5 border border-dashed border-green-800">.,&lt;character&gt;</div>
+        <p><strong>What it does:</strong> <strong>Converts</strong> a single letter (like 'A') into its secret computer number (ASCII value) and stores that number in the active box.</p>
+        <p><strong>Example:</strong> <code>.,A</code> stores the number 65 in the active box.</p>
+    </div>
+    
+    <div class="bg-gray-950 rounded-lg border border-green-800 p-4 shadow-sm shadow-green-500/10">
+        <div class="font-bold text-cyan-400 mb-1 text-lg">: - Secret Number to Letter</div>
+        <div class="font-mono bg-black text-green-400 p-1 rounded-sm mb-2.5 border border-dashed border-green-800">:,&lt;byte_value&gt;</div>
+        <p><strong>What it does:</strong> <strong>Converts</strong> a secret computer number (like 65) back into its single letter ('A') and stores that letter in the active box.</p>
+        <p><strong>Example:</strong> <code>:,65</code> stores the letter "A" in the active box.</p>
+    </div>
+    
+    <div class="bg-gray-950 rounded-lg border border-green-800 p-4 shadow-sm shadow-green-500/10">
+        <div class="font-bold text-cyan-400 mb-1 text-lg">% - Format Value</div>
+        <div class="font-mono bg-black text-green-400 p-1 rounded-sm mb-2.5 border border-dashed border-green-800">%,&lt;format_code&gt;</div>
+        <p><strong>What it does:</strong> <strong>Changes</strong> how a number or word looks (formats it). You can make words all uppercase or give numbers decimal places.</p>
+        
+        <p class="font-bold text-green-200 mt-2">Notes on Number Templates:</p>
+        <ul class="text-xs ml-4 space-y-1 list-none">
+            <li>The format <code>0</code> is a placeholder that **adds extra zeros** (like <code>0.00</code> turns <code>7.5</code> into <code>7.50</code>).</li>
+            <li>The format <code>#</code> is a placeholder that **does NOT add extra zeros**.</li>
+        </ul>
+
+        <p><strong>Examples:</strong></p>
+        <ul>
+            <li><code>%,U</code> makes the word in the active box **UPPERCASE**.</li>
+            <li><code>%,L</code> makes the word in the active box **lowercase**.</li>
+            <li><code>%,C</code> makes the word in the active box **Capital Case** (e.g., hello world becomes Hello World).</li>
+            <li><code>%,I</code> Formats a number as an **Integer** (no decimals, e.g., 10.5 becomes 11).</li>
+            <li><code>%,F2</code> formats a number to have **2 decimal places** (like 10.00).</li>
+            <li><code>%,M2</code> formats a number using a standard **Money format with commas** (e.g., 1234567 becomes 1,234,567).</li>
+        </ul>
+    </div>
+</div>        
+        <hr class="border-t border-dotted border-green-800 mt-5">
+        
+        <h4 class="text-red-400 font-bold text-xl pt-4">❌ Unsupported on Web</h4>
+        <ul class="list-disc list-inside text-red-400 space-y-1">
+            <li><code>|</code> Load Files</li>
+            <li><code>~</code> Save Files</li>
+            <li><code>`</code> Run Commands</li>
+        </ul>
+    </div>
+
+        </details>
+    </div>
+
+    <div class="w-full max-w-7xl flex flex-col md:flex-row gap-4 mb-6">
+      <div class="flex-1 bg-gray-950 border border-green-700 rounded-lg shadow-[0_0_15px_#00ff00] p-4 min-h-[400px]">
+        <h2 class="text-center text-green-300 border-b border-green-800 pb-2 mb-2">INPUT</h2>
+        <textarea id="bantas-code" placeholder="Enter Bantas code here..." class="w-full h-[400px] bg-black text-green-400 border border-green-700 rounded p-2 resize-none focus:ring-2 focus:ring-cyan-400"></textarea>
+      </div>
+      <div class="flex-1 bg-gray-950 border border-green-700 rounded-lg shadow-[0_0_15px_#00ff00] p-4 min-h-[400px]">
+        <h2 class="text-center text-green-300 border-b border-green-800 pb-2 mb-2">OUTPUT</h2>
+        <div id="output-area" class="w-full h-[400px] bg-black text-green-400 border border-green-700 rounded p-2 overflow-y-auto whitespace-pre-wrap"></div>
+      </div>
+    </div>
+
+    <div class="flex flex-wrap justify-center gap-4 w-full max-w-7xl">
+      <button id="run-button" class="flex-1 sm:flex-none bg-green-700 hover:bg-green-600 active:bg-green-800 border border-green-400 text-green-100 font-bold px-8 py-3 rounded-lg shadow-[0_0_10px_#00ff00] transition transform hover:-translate-y-1">🚀 Run Code!</button>
+      <button id="clear-button" class="flex-1 sm:flex-none bg-red-700 hover:bg-red-600 active:bg-red-800 border border-red-400 text-red-100 font-bold px-8 py-3 rounded-lg shadow-[0_0_10px_#ff0000] transition transform hover:-translate-y-1">🗑️ Clear Output</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/fengari-web@0.1.4/dist/fengari-web.min.js"></script>
+    <script>
+        // ... (Your JavaScript code remains exactly the same) ...
+        const bantasCodeInput = document.getElementById('bantas-code');
+        const runButton = document.getElementById('run-button');
+        const clearButton = document.getElementById('clear-button');
+        const outputArea = document.getElementById('output-area');
+
+        let L = null; // Lua state
+        let bantasInterpreterLoaded = false;
+
+        function appendToOutput(message, { isError = false, newline = true } = {}) {
+            if (outputArea) {
+                const span = document.createElement('span');
+                if (isError) {
+                    span.className = 'text-red-500 font-bold';
+                }
+                span.innerText = message + (newline ? '\n' : '');
+                outputArea.appendChild(span);
+                outputArea.scrollTop = outputArea.scrollHeight;
+            }
+            console.log(message);
+        }
+        
+        function logError(message) {
+            appendToOutput(message, { isError: true });
+        }
+
+        async function main() {
+            try {
+                if (typeof window.fengari === 'undefined') {
+                    logError("Error: The Fengari library (fengari-web.min.js) failed to load.");
+                    return;
+                }
+
+                const {lua, lauxlib, lualib, to_luastring, to_jsstring, interop} = window.fengari;
+
+                // Load bantas_web.lua content
+                const response = await fetch('./bantas_web.lua');
+                if (!response.ok) {
+                    logError("Error: Could not fetch bantas_web.lua. Make sure it is in the same directory.");
+                    return;
+                }
+                const bantasInterpreterCode = await response.text();
+
+                L = lauxlib.luaL_newstate();
+                lualib.luaL_openlibs(L);
+                interop.luaopen_js(L);
+
+                // --- Exposing JavaScript functions to Lua ---
+                
+                // Expose a function for printing with a newline
+                lua.lua_pushcfunction(L, function(L) {
+                    const n = lua.lua_gettop(L);
+                    let s = [];
+                    for (let i = 1; i <= n; i++) {
+                        s.push(to_jsstring(lua.lua_tolstring(L, i)));
+                    }
+                    appendToOutput(s.join('\t'), { newline: true });
+                    return 0;
+                });
+                lua.lua_setglobal(L, "js_print");
+
+                // Expose a function for printing inline (NOTE: Web version still uses newline)
+                lua.lua_pushcfunction(L, function(L) {
+                    const n = lua.lua_gettop(L);
+                    let s = [];
+                    for (let i = 1; i <= n; i++) {
+                        s.push(to_jsstring(lua.lua_tolstring(L, i)));
+                    }
+                    // Still uses newline for simplicity/consistency in a single text area
+                    appendToOutput(s.join('\t'), { newline: false }); 
+                    return 0;
+                });
+                lua.lua_setglobal(L, "js_print_inline");
+
+                // Expose a function for printing errors
+                lua.lua_pushcfunction(L, function(L) {
+                    const n = lua.lua_gettop(L);
+                    let s = [];
+                    for (let i = 1; i <= n; i++) {
+                        s.push(to_jsstring(lua.lua_tolstring(L, i)));
+                    }
+                    logError(s.join('\t'));
+                    return 0;
+                });
+                lua.lua_setglobal(L, "js_error");
+
+                // Expose a function for user input (Non-blocking using coroutines and prompt)
+                lua.lua_pushcfunction(L, function(L) {
+                    const message = to_jsstring(lua.lua_tolstring(L, 1));
+                    const co = lua.lua_tothread(L, 2);
+
+                    setTimeout(() => {
+                        // NOTE: Using prompt() for the > command
+                        const result = prompt(message, "");
+                        if (result === null) {
+                            lua.lua_pushnil(co);
+                        } else {
+                            const luaResult = to_luastring(result);
+                            lua.lua_pushlstring(co, luaResult, luaResult.length);
+                        }
+                        const status = lua.lua_resume(co, null, 1);
+                        if (status !== lua.LUA_OK && status !== lua.LUA_YIELD) {
+                            logError("BANTAS RUNTIME ERROR: " + to_jsstring(lua.lua_tolstring(co, -1)));
+                        }
+                    }, 10);
+
+                    return lua.lua_yield(L, 0);
+                });
+                lua.lua_setglobal(L, "bantas_prompt");
+
+                // Load and run the interpreter engine
+                const luaSource = to_luastring(bantasInterpreterCode);
+                let status = lauxlib.luaL_loadbuffer(L, luaSource, luaSource.length, to_luastring("@bantas_web.lua"));
+                if (status !== lua.LUA_OK) {
+                    logError("LUA ERROR: " + to_jsstring(lua.lua_tolstring(L, -1)));
+                    return;
+                }
+
+                status = lua.lua_pcall(L, 0, 0, 0);
+                if (status !== lua.LUA_OK) {
+                    logError("LUA ERROR: " + to_jsstring(lua.lua_tolstring(L, -1)));
+                    return;
+_                }
+
+                bantasInterpreterLoaded = true;
+                outputArea.innerHTML = "BANTAS FUN CODER READY.\n\n...Type your code and press Run!\n";
+
+                // Set default code for pro console
+                bantasCodeInput.value = "@,1\n<,\"Hello, Young Coder!\"\n?,@1";
+
+            } catch (e) {
+                logError("FATAL JAVASCRIPT ERROR: " + e.message);
+            }
+        }
+
+        function runBantas() {
+            if (!bantasInterpreterLoaded) {
+                logError("Interpreter not ready. Please wait or refresh.");
+                return;
+            }
+
+            outputArea.innerHTML = ''; // Clear output
+            const bantasCode = bantasCodeInput.value;
+            const { lua, to_luastring, to_jsstring } = window.fengari;
+
+            try {
+                // Create a new coroutine (thread) to run the interpreter
+                const co = lua.lua_newthread(L);
+                lua.lua_getglobal(co, "run_interpreter");
+                const bantasSource = to_luastring(bantasCode);
+                lua.lua_pushlstring(co, bantasSource, bantasSource.length);
+                const status = lua.lua_resume(co, null, 1);
+
+                if (status !== lua.LUA_OK && status !== lua.LUA_YIELD) {
+                    logError("BANTAS RUNTIME ERROR: " + to_jsstring(lua.lua_tolstring(co, -1)));
+                }
+            } catch (e) {
+                logError("FATAL JAVASCRIPT ERROR: " + e.message);
+            }
+        }
+
+        runButton.addEventListener('click', runBantas);
+        clearButton.addEventListener('click', () => {
+            outputArea.innerHTML = '';
+        });
+
+        main();
+
+    </script>
+
+    <footer class="mt-10 text-center text-green-500 text-sm">
+      Bantas v1.4.7 Beta (Web version)<br />Copyright © 2025 Jon Velasco a.k.a muthym
+    </footer>
+  </body>
+</html>
