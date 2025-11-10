@@ -67,6 +67,6 @@
 | `:` | Number to Letter | Converts a secret computer number back to a letter. | `:,65` |
 | `%` | Format | Changes how a word or number looks (e.g., UPPERCASE). | `%,U` |
 
-**Bantas Web (based on Bantas 1.4.7 Beta)**
+Bantas Web (based on Bantas 1.4.7 Beta)
 
 Copyright (c) 2025 Jon Velasco a.k.a. muthym
